@@ -10,6 +10,8 @@ My configuration files and list of utilities i use on my system.
 - pulseaudio - sound server
 - pactl - controls for pulseaudio2
 - nm-applet
+- [firefox-color](https://color.firefox.com) - for creating a custom firefox theme
+- [xkblayout-state](https://github.com/nonpop/xkblayout-state) - a tool to show the current keyboard layout and variant (interestingly enough there is no standard approach to this in linux from what i've found online)
 
 ## Fonts
 
