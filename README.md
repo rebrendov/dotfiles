@@ -12,8 +12,12 @@ My configuration files and list of utilities i use on my system.
 - nm-applet
 - [firefox-color](https://color.firefox.com) - for creating a custom firefox theme
 - [xkblayout-state](https://github.com/nonpop/xkblayout-state) - a tool to show the current keyboard layout and variant (interestingly enough there is no standard approach to this in linux from what i've found online)
+- [polybar](https://github.com/polybar/polybar) - a very customizable bar
+- [polybar-themes](https://github.com/adi1090x/polybar-themes) - a collection of polybar themes with some instructions, a huge inspiration
 
 ## Fonts
 
 - [Firacode](https://github.com/tonsky/FiraCode) - a really nice monospaced font with great looking ligatures
 - [YosemiteSanFrancisco](https://github.com/supermarin/YosemiteSanFranciscoFont)
+- [FontAwesome](https://fontawesome.com) - many great icons
+- [MaterialIcons](https://material.io/resources/icons/) - some additional icons from google. They have the [file](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints) with code points in their repo.
