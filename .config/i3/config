@@ -29,12 +29,21 @@ font pango:SFNS Display 13
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# --HOTKEYS--
+# =_=_=_=_=_=_=_=_=_=_=_=_=_HOTKEYS=_=_=_=_=_=_=_=_=_=_=
+#
 # start a terminal
 bindsym $mod+Return exec konsole
+
 # start a browser
 bindsym $mod+b exec firefox
-# --HOTKEYS--
+
+# start a browser in a profiles mode
+bindsym $mod+ctrl+b exec firefox -p
+
+#start an editor
+bindsym $mod+c exec code
+
+# =_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -63,6 +72,14 @@ bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+colon move right
+
+# move focused window between monitors
+bindsym $mod+Ctrl+Shift+k move to output up
+bindsym $mod+Ctrl+Shift+l move to output down
+
+# move workspace to output
+bindsym $mod+Ctrl+k move workspace to output up
+bindsym $mod+Ctrl+l move workspace to output down
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -197,8 +214,11 @@ gaps outer 5  #add gaps around window
 
 # Pulse Audio controls
 bindsym XF86AudioMute        exec --no-startup-id amixer -D pulse set Master 1+ toggle
+bindsym XF86AudioMicMute     exec --no-startup-id amixer -D pulse set Capture 1+ toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset 'Master' 5%- #decrease sound volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset 'Master' 5%+ #increase sound volume
+bindsym ctrl+XF86AudioLowerVolume exec --no-startup-id amixer sset 'Capture' 5%- #decrease mic volume
+bindsym ctrl+XF86AudioRaiseVolume exec --no-startup-id amixer sset 'Capture' 5%+ #increase mic volume
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 # increase screen brightness
@@ -211,9 +231,9 @@ bindsym $mod+F6 exec --no-startup-id ~/.config/i3/toggletouchpad.sh # toggle tou
 bindsym XF86AudioPlay  exec --no-startup-id playerctl play
 bindsym XF86AudioPause exec --no-startup-id playerctl pause
 bindsym XF86AudioNext  exec --no-startup-id playerctl next
-bindsym XF86AudioPrev  exec--no-startup-id playerctl previous
+bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
 
-exec_always --no-startup-id feh --bg-fill ~/Pictures/deer-and-sun.jpg
+exec_always --no-startup-id feh --no-fehbg --bg-scale --recursive ~/Pictures/deer-and-sun.jpg
 
 # Use us, colemak, ru layouts and switch them to rshift
 exec --no-startup-id setxkbmap -layout us,us,ru -variant ,colemak, -option 'grp:rshift_toggle'
@@ -240,6 +260,20 @@ mode "$mode_system" {
 }
 bindsym $mod+Shift+e mode "$mode_system"
 
+# switch monitor setup
+set $mode_monitor (t) additional-top, (r) additional-side, (e) single, (w) top-only
+mode "$mode_monitor" {
+    bindsym t exec --no-startup-id ~/.screenlayout/additional-top.sh, mode "default"
+    bindsym r exec --no-startup-id ~/.screenlayout/additional-side.sh, mode "default"
+    bindsym e exec --no-startup-id ~/.screenlayout/single.sh, mode "default"
+    bindsym w exec --no-startup-id ~/.screenlayout/single-top.sh, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Ctrl+s mode "$mode_monitor"
+
 # turn on two fingers horizontal scrolling= 
 # enable coasting for touchpad
 exec --no-startup-id synclient HorizTwoFingerScroll=1 CornerCoasting=0 CoastingSpeed=20 CoastingFriction=38 VertScrollDelta=-144 HorizScrollDelta=200
@@ -255,3 +289,9 @@ bindsym $mod+m workspace next
 # set desktop background with custom effect
 exec --no-startup-id betterlockscreen -u ~/Pictures/deer-and-sun.jpg
 exec --no-startup-id betterlockscreen -w dim
+
+# start safeeyes
+exec --no-startup-id safeeyes
+
+# take screenshot with flameshot
+bindsym Print exec /usr/bin/flameshot gui

@@ -1,5 +1,8 @@
 #!/bin/sh
 lock() {
+    setxkbmap -layout us
+    sleep 1s # waiting for change to take effect
+    setxkbmap -layout us,us,ru -variant ,colemak, -option 'grp:rshift_toggle'
     betterlockscreen --off 300 -l blur -b 0.7
 }
 

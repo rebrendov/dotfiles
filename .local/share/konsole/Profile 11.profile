@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Linux
-Font=Fira Code Medium,13,-1,5,57,0,0,0,0,0
+Font=MesloLGS NF,14,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [General]
